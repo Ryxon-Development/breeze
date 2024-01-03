@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('lang/nl', [App\Http\Controllers\LanguageController::class, 'dutch'])->name('lang.nl');
+Route::get('lang/en', [App\Http\Controllers\LanguageController::class, 'english'])->name('lang.en');
+
 Route::get('/', function () {
     return view('welcome');
 });
