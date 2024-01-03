@@ -13,5 +13,10 @@
     "Confirm Password": "Bevestig Wachtwoord",
     "Delete Account": "Verwijder Account",
     "Permanently delete your account.": "Verwijder je account permanent.",
-    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Als je je account verwijderd, zullen al je gegevens permanent verwijderd worden. Download eerst alle gegevens die je wilt bewaren."
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Als je je account verwijderd, zullen al je gegevens permanent verwijderd worden. Download eerst alle gegevens die je wilt bewaren.",
+    "Users": "Gebruikers",
+    "All users": "Alle gebruikers",
+    "New user": "Nieuwe gebruiker",
+    "Actions": "Acties",
+    "Name": "Naam"
 }
