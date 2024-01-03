@@ -1,0 +1,17 @@
+{
+    "Dashboard": "DashBordje",
+    "You're logged in!": "Je bent ingelogd!",
+    "Profile": "Profiel",
+    "Logout": "Uitloggen",
+    "Profile Information": "Profiel Informatie",
+    "Update your account's profile information and email address.": "Update je profiel informatie en email adres.",
+    "Save": "Opslaan",
+    "Update Password": "Update Wachtwoord",
+    "Ensure your account is using a long, random password to stay secure.": "Zorg ervoor dat je een lang en random wachtwoord gebruikt om veilig te blijven.",
+    "Current Password": "Huidig Wachtwoord",
+    "New Password": "Nieuw Wachtwoord",
+    "Confirm Password": "Bevestig Wachtwoord",
+    "Delete Account": "Verwijder Account",
+    "Permanently delete your account.": "Verwijder je account permanent.",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "Als je je account verwijderd, zullen al je gegevens permanent verwijderd worden. Download eerst alle gegevens die je wilt bewaren."
+}
