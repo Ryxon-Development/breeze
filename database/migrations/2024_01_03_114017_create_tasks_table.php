@@ -16,27 +16,27 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->foreignId('user_id')->constrained();
-            $table->date('due_date');
+            $table->date('due_date')->nullable();
             $table->string('status');
-            $table->string('priority');
+            $table->string('priority')->nullable();
 
             // created parts
             $table->foreignId('created_by')->constrained('users');
             $table->timestamp('created_at')->useCurrent();
 
             // updated parts
-            $table->foreignId('updated_by')->constrained('users');
-            $table->timestamp('updated_at')->useCurrent();
+            $table->foreignId('updated_by')->nullable()->constrained('users');
+            $table->timestamp('updated_at')->nullable();
 
             // completed parts
-            $table->foreignId('completed_by')->constrained('users');
-            $table->timestamp('completed_at')->useCurrent();
+            $table->foreignId('completed_by')->nullable()->constrained('users');
+            $table->timestamp('completed_at')->nullable();
 
             // assigned parts
-            $table->foreignId('assigned_by')->constrained('users');
-            $table->timestamp('assigned_at')->useCurrent();
-            $table->foreignId('assigned_to')->constrained('users');
-            $table->timestamp('assigned_to_at')->useCurrent();
+            $table->foreignId('assigned_by')->nullable()->constrained('users');
+            $table->timestamp('assigned_at')->nullable();
+            $table->foreignId('assigned_to')->nullable()->constrained('users');
+            $table->timestamp('assigned_to_at')->nullable();
 
             // Additional Columns
             $table->text('comments')->nullable(); // Comments or additional details
@@ -49,6 +49,9 @@ return new class extends Migration
             $table->softDeletes();
         });
 
+        // run TasksSeeder
+        $seeder = new \Database\Seeders\TasksSeeder();
+        $seeder->run();
     }
 
     /**
