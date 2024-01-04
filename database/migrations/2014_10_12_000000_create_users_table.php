@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -20,6 +23,15 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        //create first tester admin user
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@tester.com',
+            'password' => Hash::make('p4ssw0rd'), // Hash the password
+        ]);
+        //create another 4 random users
+        User::factory()->count(4)->create();
     }
 
     /**
