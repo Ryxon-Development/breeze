@@ -1,9 +1,12 @@
 <?php
 // resources/lang/nl/dashboard.php
 
-//specific prefi language lines, must be accessed in view by example: {{ __('messages.dashboard') }}
+//specific prefix language lines, must be accessed in view by example: {{ __('messages.dashboard') }}
 
 return [
-    'dashboard' => 'Dashboardje'
+    'dashboard' => 'Dashboardje',
+    'task-updated' => 'Taak succesvol bijgewerkt!',
+    'task-deleted' => 'Taak succesvol verwijderd!',
+    'task-created' => 'Taak succesvol aangemaakt!'
     // Add other language lines as needed
 ];
