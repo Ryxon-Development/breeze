@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,21 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 //create
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+//---TASKS---
+//index
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+//create
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+//show
+Route::get('/tasks/{id}/show', [TaskController::class, 'show'])->name('tasks.show');
+//edit
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
+//delete
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy'); //using {task} instead of {id} because of Route Model Binding
+
 
 
 Route::get('/', function () {
