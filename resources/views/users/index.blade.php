@@ -30,7 +30,7 @@
                         <a href="{{ route('users.edit', $user->id) }}" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block" onsubmit="return confirm('{{ __('Are you sure you want to delete this user?') }}')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300">
@@ -43,5 +43,4 @@
             </tbody>
         </table>
     </div>
-
 </x-app-layout>
