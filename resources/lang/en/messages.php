@@ -4,6 +4,9 @@
 //specific language lines, must be accessed in view by example: {{ __('messages.dashboard') }}
 
 return [
-    'dashboard' => 'Dashboard'
+    'dashboard' => 'Dashboard',
+    'messages.task-updated' => 'Task updated successfully!',
+    'task-deleted' => 'Task deleted successfully!',
+    'task-created' => 'Task created successfully!'
     // Add other language lines as needed
 ];
