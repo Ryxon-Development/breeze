@@ -18,12 +18,17 @@ class Task extends Model
         'tags',
         'dependencies',
         'attachments',
-        'created_by'
+        'created_by',
+        'priority'
     ];
 
     //belongs to user
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function taskStatus()
+    {
+        return $this->belongsTo(TaskStatus::class, 'status', 'id');
     }
 }
