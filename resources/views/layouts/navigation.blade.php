@@ -23,18 +23,12 @@
                     </x-nav-link>
                 </div>
             </div>
-
-{{--            {{ __('test.msg') }}--}}
-
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="space-x-2 ml-auto mr-0">
-                    <a href="{{ url('lang/nl') }}" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300 @if(app()->getLocale() === 'nl') font-semibold underline @endif">
-                        NL
-                    </a>
-                    <a href="{{ url('lang/en') }}" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300 @if(app()->getLocale() === 'en') font-semibold underline @endif">
-                        EN
-                    </a>
+                    <a href="{{ url('lang/nl') }}" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300 @if(app()->getLocale() === 'nl') font-semibold underline @endif">NL</a>
+                    <a href="{{ url('lang/en') }}" class="text-gray-500 hover:text-gray-700 white:text-gray-400 white:hover:text-gray-300 @if(app()->getLocale() === 'en') font-semibold underline @endif">EN</a>
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
