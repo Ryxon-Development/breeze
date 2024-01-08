@@ -27,6 +27,17 @@
     "Description": "Beschrijving",
     "Comment": "Opmerking",
     "Comments": "Opmerkingen",
-    "Create task": "Maak taak aan"
+    "Create task": "Maak taak aan",
+    "Assigned to": "Toegewezen aan",
+    "Assigned" : "Toegewezen",
+    "Created at": "Aangemaakt",
+    "Updated at": "Bijgewerkt",
+    "Priority": "Prioriteit",
+    "Attachments": "Bijlagen",
+    "Edit task": "Bewerk taak",
+    "Save task": "Sla taak op",
+    "Delete task": "Verwijder taak",
+    "Delete": "Verwijder",
+    "Edit": "Bewerken"
 
 }
