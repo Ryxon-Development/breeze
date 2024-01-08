@@ -46,6 +46,20 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="text-xl text-gray-600 white:text-gray-200">{{ __('Priority') }}</label><br>
+                            <select name="priority" id="priority" class="border-2 border-gray-500 w-full">
+                                @foreach($taskPriorities as $taskPriority)
+                                    <option value="{{ $taskPriority->id }}" {{ old('priority') == $taskPriority->id ? 'selected' : '' }}>
+                                        {{ __($taskPriority->label) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('priority')
+                            <div class="text-red-600">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
                             <label class="text-xl text-gray-600 white:text-gray-200">{{ __('Assigned to') }}</label><br>
                             <select name="user_id" id="user" class="border-2 border-gray-300 p-2 w-full">
                                 @foreach($users as $user)
