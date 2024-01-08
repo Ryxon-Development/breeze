@@ -38,7 +38,7 @@ Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 //show
 Route::get('/tasks/{id}/show', [TaskController::class, 'show'])->name('tasks.show');
 //edit
-Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
 //delete
 Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy'); //using {task} instead of {id} because of Route Model Binding
