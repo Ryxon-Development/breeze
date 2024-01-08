@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\TaskStatus;
+use App\Models\Priority;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,11 @@ class TaskController extends Controller
     public function index()
     {
         //get all tasks, descending order
-        $tasks = Task::orderBy('id', 'desc')->get();
+        $tasks = Task::orderBy('priority', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+
 
         //send to view
         return view('tasks.index', [
@@ -40,6 +45,7 @@ class TaskController extends Controller
         return view('tasks.create', [
             'users' => $users,
             'taskStatuses' => $taskStatuses,
+            'taskPriorities' => Priority::all(),
             'tasks' => $tasks
         ]);
     }
@@ -56,7 +62,10 @@ class TaskController extends Controller
             'status' => 'required|integer',
             'user_id' => 'integer',
             'dependencies' => 'array',
-            'attachments' => 'array'
+            'attachments' => 'array',
+            'priority' => 'required|integer',
+            'comments' => 'string',
+            'tags' => 'string'
         ]);
 
         $task['dependencies'] = implode(',', $task['dependencies'] ?? []);
@@ -65,12 +74,12 @@ class TaskController extends Controller
         $task['created_by'] = auth()->id();
         $task['created_at'] = now();
 
+//        dd($task);
+
+
         Task::create($task);
 
         return redirect()->route('tasks.index')->with('success', __('messages.task-created'));
-
-        //prepare data for insert
-
     }
 
     /**
@@ -86,7 +95,13 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', [
+            'task' => $task,
+            'users' => User::all(),
+            'taskStatuses' => TaskStatus::all(),
+            'taskPriorities' => Priority::all(),
+            'tasks' => Task::all()
+        ]);
     }
 
     /**
@@ -104,8 +119,9 @@ class TaskController extends Controller
         $task->update(array_merge($request->all(), $updatedTask));
 
         //redirect to tasks.index with flash message, use lang file
-        return redirect()->route('tasks.index')->with('success', __('messages.task-updated'));
-
+//        return redirect()->route('tasks.index')->with('success', __('messages.task-updated'));
+        //redirect to the current task
+        return redirect()->route('tasks.edit', $task)->with('success', __('messages.task-updated'));
     }
 
     public function assignTask(Request $request, Task $task)
