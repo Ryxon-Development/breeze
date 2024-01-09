@@ -76,12 +76,12 @@
 
                         <div class="mb-4">
                             <label class="text-xl text-gray-600 white:text-gray-200">{{ __('Assigned to') }}</label><br>
-                            <select name="user_id" id="user" class="border-2 border-gray-300 p-2 w-full">
+                            <select name="assigned_to" id="user" class="border-2 border-gray-300 p-2 w-full">
                                 @foreach($users as $user)
-                                    <option value="{{ $user->id }}" {{ old('user_id', $task->user_id) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" {{ old('assigned_to', $task->assigned_to) == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                                 @endforeach
                             </select>
-                            @error('user_id')
+                            @error('assigned_to')
                             <div class="text-red-600">{{ $message }}</div>
                             @enderror
                         </div>

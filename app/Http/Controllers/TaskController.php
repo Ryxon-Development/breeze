@@ -55,20 +55,28 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        //validate request form data
         $task = $request->validate([
             'name' => 'required',
             'description' => 'required',
             'status' => 'required|integer',
-            'user_id' => 'integer',
             'dependencies' => 'array',
             'attachments' => 'array',
             'priority' => 'required|integer',
             'comments' => 'nullable:string',
-            'tags' => 'nullable:string'
+            'tags' => 'nullable:string',
+            'assigned_to' => 'integer:required'
         ]);
 
-        $task['dependencies'] = implode(',', $task['dependencies'] ?? []);
-        $task['attachments'] = implode(',', $task['attachments'] ?? []);
+        //user_id from logged in user, defines who originally created the task
+        $task['user_id'] = auth()->id();
+        //assigned_at from now
+        $task['assigned_at'] = now();
+        //assigned_by from logged in user, defines who assigned the task or reassigned the task last
+        $task['assigned_by'] = auth()->id();
+
+        $task['dependencies'] = json_encode($task['dependencies'] ?? []);
+        $task['attachments'] = json_encode($task['attachments'] ?? []);
 
         $task['created_by'] = auth()->id();
         $task['created_at'] = now();
@@ -105,30 +113,31 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //TODO: TEST THIS CODE (UNTESTED)
-
-        $task = Task::find($request->id);
-
-        $updatedTask = array('updated_at' => now(),'updated_by' => auth()->id());
-
+        //validate request form data
         $taskVal = $request->validate([
             'name' => 'required',
             'description' => 'required',
             'status' => 'required|integer',
-            'user_id' => 'integer',
             'dependencies' => 'array',
             'attachments' => 'array',
             'priority' => 'required|integer',
             'comments' => 'nullable:string',
-            'tags' => 'nullable:string'
+            'tags' => 'nullable:string',
+            'assigned_to' => 'integer:required'
         ]);
 
+//        dd($taskVal['dependencies']);
 
-        //combine updatedTask with request data for update
-        $task->update(array_merge($taskVal, $updatedTask));
+        //user_id from logged in user, defines who originally created the task
+        $taskVal['user_id'] = auth()->id();
+        //assigned_at from now
+        $taskVal['assigned_at'] = now();
+        //assigned_by from logged in user, defines who assigned the task or reassigned the task last
+        $taskVal['assigned_by'] = auth()->id();
 
-        //redirect to tasks.index with flash message, use lang file
-//        return redirect()->route('tasks.index')->with('success', __('messages.task-updated'));
+        //Update task but add updated_at and updated_by
+        $task->update(array_merge($taskVal, array('updated_at' => now(),'updated_by' => auth()->id())));
+
         //redirect to the current task
         return redirect()->route('tasks.edit', $task)->with('success', __('messages.task-updated'));
     }

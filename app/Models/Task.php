@@ -19,7 +19,10 @@ class Task extends Model
         'dependencies',
         'attachments',
         'created_by',
-        'priority'
+        'priority',
+        'assigned_to',
+        'assigned_by',
+        'assigned_at'
     ];
 
     //belongs to user
