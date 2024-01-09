@@ -55,7 +55,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
         $task = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -64,8 +63,8 @@ class TaskController extends Controller
             'dependencies' => 'array',
             'attachments' => 'array',
             'priority' => 'required|integer',
-            'comments' => 'string',
-            'tags' => 'string'
+            'comments' => 'nullable:string',
+            'tags' => 'nullable:string'
         ]);
 
         $task['dependencies'] = implode(',', $task['dependencies'] ?? []);
@@ -73,9 +72,6 @@ class TaskController extends Controller
 
         $task['created_by'] = auth()->id();
         $task['created_at'] = now();
-
-//        dd($task);
-
 
         Task::create($task);
 
@@ -115,8 +111,21 @@ class TaskController extends Controller
 
         $updatedTask = array('updated_at' => now(),'updated_by' => auth()->id());
 
+        $taskVal = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required|integer',
+            'user_id' => 'integer',
+            'dependencies' => 'array',
+            'attachments' => 'array',
+            'priority' => 'required|integer',
+            'comments' => 'nullable:string',
+            'tags' => 'nullable:string'
+        ]);
+
+
         //combine updatedTask with request data for update
-        $task->update(array_merge($request->all(), $updatedTask));
+        $task->update(array_merge($taskVal, $updatedTask));
 
         //redirect to tasks.index with flash message, use lang file
 //        return redirect()->route('tasks.index')->with('success', __('messages.task-updated'));

@@ -78,7 +78,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         if ($id == 1) {
-            return redirect()->route('users.index')->with('error', 'You cannot delete the admin user!');
+            return redirect()->route('users.index')->with('error', __('You cannot delete the admin user!'));
         }
 
         //Catch exception if user has assigned tasks
@@ -86,9 +86,9 @@ class UserController extends Controller
             $user = User::find($id);
             $user->delete();
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('error', 'You cannot delete a user with assigned tasks.!');
+            return redirect()->route('users.index')->with('error', __('You cannot delete a user with assigned tasks!'));
         }
 
-        return redirect()->route('users.index')->with('message', 'User deleted successfully!');
+        return redirect()->route('users.index')->with('message', __('User deleted successfully!'));
     }
 }

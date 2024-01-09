@@ -38,6 +38,9 @@
     "Save task": "Sla taak op",
     "Delete task": "Verwijder taak",
     "Delete": "Verwijder",
-    "Edit": "Bewerken"
-
+    "Edit": "Bewerken",
+    "Tasks": "Taken",
+    "You cannot delete the admin user!": "Je kunt de admin gebruiker niet verwijderen!",
+    "You cannot delete a user with assigned tasks!": "Je kunt een gebruiker met toegewezen taken niet verwijderen!",
+    "User deleted successfully!": "Gebruiker succesvol verwijderd!"
 }
