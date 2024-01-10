@@ -42,10 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
-   Route::put('/generate-token/{user}', [UserController::class, 'generateApiToken'])->name('generate-token');
-});
-
 Route::get('/hello', function () {
 
     //get logged in user

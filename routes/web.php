@@ -56,4 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy'); //using {task} instead of {id} because of Route Model Binding
 });
 
+Route::middleware('auth')->group(function () {
+    Route::put('/generate-token/{user}', [UserController::class, 'generateApiToken'])->name('generate-token');
+});
+
 require __DIR__.'/auth.php';
