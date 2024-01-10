@@ -18,7 +18,7 @@ class CouponFactory extends Factory
     {
         return [
             //12 letter capital letter coupon code
-            'code' => fake()->unique()->regexify('[A-Z]{12}'),
+            'code' => fake()->unique()->regexify('[A-Z]{6}'),
             'value' => fake()->numberBetween(1, 10)*10,
             'used' => 0,
             'active' => true,
