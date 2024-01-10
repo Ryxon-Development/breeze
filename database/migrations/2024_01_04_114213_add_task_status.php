@@ -16,10 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('label');
         });
-
-        //run TaskStatusSeeder
-        $seeder = new \Database\Seeders\TaskStatusSeeder();
-        $seeder->run();
     }
 
     /**
