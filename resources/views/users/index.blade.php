@@ -18,6 +18,7 @@
                 <th class="px-4 py-2">{{ __('Email') }}</th>
 {{--                <th class="px-4 py-2">{{ __('Roles') }}</th>--}}
                 <th class="px-4 py-2">{{ __('Actions') }}</th>
+                <th class="px-4 py-2">{{ __('API') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -38,6 +39,10 @@
                             </button>
                         </form>
                     </td>
+                    <td class="border px-4 py-2">
+                        {!! $user->api_token ? '<i class="fas fa-check text-green-500"></i>' : '' !!}
+                    </td>
+
                 </tr>
             @endforeach
             </tbody>
