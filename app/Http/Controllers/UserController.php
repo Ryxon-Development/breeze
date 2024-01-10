@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class UserController extends Controller
 {
+    public function generateApiToken(User $user)
+    {
+        $user->api_token = $user->createToken('api_token')->plainTextToken;;
+        $user->save();
+        return response()->json([
+            'token' => $user->api_token,
+        ], 200);
+    }
+
     /**
      * Display a listing of the resource.
      */

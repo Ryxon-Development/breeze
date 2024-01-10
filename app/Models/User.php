@@ -48,4 +48,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    static function generate_api_token(User $user)
+    {
+        $user->api_token = $user->createToken('api_token')->plainTextToken;;
+        $user->save();
+        return $user->api_token;
+    }
 }
