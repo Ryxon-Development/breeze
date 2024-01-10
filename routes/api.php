@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Coupon;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CouponController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +18,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//---CUSTOM---
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -28,19 +30,24 @@ Route::middleware('auth:sanctum')->group(function () {
         ], 200);
         return response($response, 200)->header('Content-Type', 'application/json');
     });
-
-    Route::get('/coupons/{coupon:code}', function(Coupon $coupon){
-        return response()->json([
-            'coupon' => $coupon,
-        ], 200);
-    });
-    Route::get('/coupons', function(){
-        $coupons = App\Models\Coupon::all();
-        return response()->json([
-            'coupons' => $coupons,
-        ], 200);
-    });
 });
+
+//---COUPONS---
+Route::middleware('auth:sanctum')->group(function () {
+
+    //INDEX
+    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons.index');
+    //STORE
+    Route::post('/coupon', [CouponController::class, 'store'])->name('coupons.store');
+    //SHOW
+    Route::get('/coupon/{coupon:code}', [CouponController::class, 'show'])->name('coupons.show');
+    //UPDATE
+    Route::put('/coupon/{coupon:code}', [CouponController::class, 'update'])->name('coupons.update');
+    //ACTIVATE
+    Route::put('/coupon/{coupon:code}/activate', [CouponController::class, 'activate'])->name('coupons.activate');
+
+});
+
 
 Route::get('/hello', function () {
 
