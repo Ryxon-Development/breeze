@@ -42,5 +42,7 @@
     "Tasks": "Taken",
     "You cannot delete the admin user!": "Je kunt de admin gebruiker niet verwijderen!",
     "You cannot delete a user with assigned tasks!": "Je kunt een gebruiker met toegewezen taken niet verwijderen!",
-    "User deleted successfully!": "Gebruiker succesvol verwijderd!"
+    "User deleted successfully!": "Gebruiker succesvol verwijderd!",
+    "Personal API Token" : "Persoonlijke API Token",
+    "Generate your personal API token." : "Genereer je persoonlijke API token."
 }
