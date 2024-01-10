@@ -48,10 +48,10 @@ return new class extends Migration
 
             $table->softDeletes();
         });
-
-        // run TasksSeeder
-        $seeder = new \Database\Seeders\TasksSeeder();
-        $seeder->run();
+//
+//        // run TasksSeeder
+//        $seeder = new \Database\Seeders\TasksSeeder();
+//        $seeder->run();
     }
 
     /**

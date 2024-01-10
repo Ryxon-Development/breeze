@@ -16,12 +16,6 @@ return new class extends Migration
             $table->id();
             $table->string('label');
         });
-        //now create 3 priorities
-        DB::table('priorities')->insert([
-            ['label' => 'Low'],
-            ['label' => 'Medium'],
-            ['label' => 'High'],
-        ]);
     }
 
     /**

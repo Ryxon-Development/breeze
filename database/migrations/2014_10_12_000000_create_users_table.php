@@ -26,15 +26,15 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        //create first tester admin user
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@tester.com',
-            'password' => Hash::make('p4ssw0rd'), // Hash the password
-        ]);
-        //create another 4 random users
-        User::factory()->count(4)->create();
+//
+//        //create first tester admin user
+//        DB::table('users')->insert([
+//            'name' => 'admin',
+//            'email' => 'admin@tester.com',
+//            'password' => Hash::make('p4ssw0rd'), // Hash the password
+//        ]);
+//        //create another 4 random users
+//        User::factory()->count(4)->create();
     }
 
     /**
