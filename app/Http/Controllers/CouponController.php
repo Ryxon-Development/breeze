@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
+    //any failed validation will return json response
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

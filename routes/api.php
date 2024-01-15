@@ -18,20 +18,29 @@ use App\Http\Controllers\CouponController;
 |
 */
 
+//Test API
+Route::get('/hello', function () {
+    return response()->json([
+        'message' => 'Hello World!',
+    ], 200);
+});
+
 //---CUSTOM---
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return response()->json([
+            'user' => $request->user(),
+        ], 200);
     });
 
-    Route::get('/test', function(){
-        $response = json_encode([
+    Route::get('/auth', function(){
+        return response()->json([
             'message' => 'Successfully authenticated!',
         ], 200);
-        return response($response, 200)->header('Content-Type', 'application/json');
     });
 });
 
+//---COUPONS---
 Route::middleware('auth:sanctum')->group(function () {
 
     // INDEX
@@ -57,22 +66,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/coupon/{coupon:code}/activate', [CouponController::class, 'activate'])
         ->name('coupons.activate')
         ->middleware('can:activate-coupon'); // Assuming activation is part of the update policy
-});
-
-
-
-Route::get('/hello', function () {
-
-    //get logged in user
-    $user = User::find(1);
-//    $token = $user->createToken('token-name')->plainTextToken;
-    //generate api_token for user
-    $token = $user->createToken('token-name')->plainTextToken;
-    $user->api_token = $token;
-    $user->save();
-
-    return response()->json([
-        'message' => 'Hello World!',
-    ], 200);
 });
 
