@@ -44,27 +44,9 @@ class CouponController extends Controller
      */
     public function store(StoreCouponRequest $request)
     {
-//        //check if coupon already exists
-//        $coupon = Coupon::where('code', $request->code)->first();
-//
-//        if($coupon){
-//            return response()->json([
-//                'error' => 'Coupon already exists',
-//                'coupon' => $coupon
-//            ], 422);
-//        }
-        //This check is now handled by the StoreCouponRequest class in rules()
-
-        //create coupon
-        $coupon = Coupon::create([
-            'code' => $request->code,
-            'value' => $request->value,
-            'used' => '0',
-            'active' => '0'
-        ]);
         return response()->json([
             'message' => 'Coupon created successfully',
-            'coupon' => $coupon,
+            'coupon' => Coupon::create($request->all())
         ], 200);
     }
 
@@ -92,7 +74,7 @@ class CouponController extends Controller
     public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
         //only update coupon values that are passed in request
-        $update = $coupon->update($request->all());
+        $coupon->update($request->all());
 
         return response()->json([
             'message' => 'Coupon updated successfully',

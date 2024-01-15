@@ -34,6 +34,20 @@ class StoreCouponRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        //active and used defaults when not provided
+        $this->merge([
+            'active' => $this->input('active', 0),
+            'used' => $this->input('used', 0),
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
@@ -43,7 +57,8 @@ class StoreCouponRequest extends FormRequest
         return [
             'code' => 'required|string|max:6|min:6|unique:coupons,code',
             'value' => 'required|numeric',
-            // Add more validation rules as needed
+            'active' => 'sometimes|required|boolean',
+            'used' => 'sometimes|required|boolean'
         ];
     }
 
