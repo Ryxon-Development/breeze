@@ -13,7 +13,8 @@ class CouponPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        //disallow all as test
+        return $user->id === 1;
     }
 
     /**
@@ -21,7 +22,11 @@ class CouponPolicy
      */
     public function view(User $user, Coupon $coupon): bool
     {
-        //
+        //Allow all to view single coupons for now.
+        return true;
+
+        //Optionally add $coupon specific logic, for example:
+        //return $user->id === $coupon->user_id;
     }
 
     /**
@@ -29,7 +34,8 @@ class CouponPolicy
      */
     public function create(User $user): bool
     {
-        //
+        //only user with id 1 can create coupons
+        return $user->id === 1;
     }
 
     /**
@@ -37,7 +43,7 @@ class CouponPolicy
      */
     public function update(User $user, Coupon $coupon): bool
     {
-        //
+        return $user->id === 1;
     }
 
     /**
@@ -45,7 +51,7 @@ class CouponPolicy
      */
     public function delete(User $user, Coupon $coupon): bool
     {
-        //
+        return $user->id === 1;
     }
 
     /**
@@ -53,7 +59,7 @@ class CouponPolicy
      */
     public function restore(User $user, Coupon $coupon): bool
     {
-        //
+        return $user->id === 1;
     }
 
     /**
@@ -61,6 +67,14 @@ class CouponPolicy
      */
     public function forceDelete(User $user, Coupon $coupon): bool
     {
-        //
+        return $user->id === 1;
+    }
+
+    /**
+     * Determine whether the user can activate the model.
+     */
+    public function activate(User $user, Coupon $coupon): bool
+    {
+        return $user->id === 1;
     }
 }

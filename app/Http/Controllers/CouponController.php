@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateCouponRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
@@ -25,9 +27,8 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = Coupon::all();
         return response()->json([
-            'coupons' => $coupons,
+            'coupons' => Coupon::all(),
         ], 200);
     }
 
@@ -53,8 +54,12 @@ class CouponController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Coupon $coupon)
+    public function show(Request $request, Coupon $coupon)
     {
+        //check if user is authorized to view coupon
+        //cant use policy in route because $coupon is required, and cant be passed in route
+        $this->authorize('view', $coupon);
+
         return response()->json([
             'coupon' => $coupon,
         ], 200);

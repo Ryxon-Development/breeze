@@ -32,21 +32,33 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-//---COUPONS---
 Route::middleware('auth:sanctum')->group(function () {
 
-    //INDEX
-    Route::get('/coupons', [CouponController::class, 'index'])->name('coupons.index');
-    //STORE
-    Route::post('/coupon', [CouponController::class, 'store'])->name('coupons.store');
-    //SHOW
-    Route::get('/coupon/{coupon:code}', [CouponController::class, 'show'])->name('coupons.show');
-    //UPDATE
-    Route::put('/coupon/{coupon:code}', [CouponController::class, 'update'])->name('coupons.update');
-    //ACTIVATE
-    Route::put('/coupon/{coupon:code}/activate', [CouponController::class, 'activate'])->name('coupons.activate');
+    // INDEX
+    Route::get('/coupons', [CouponController::class, 'index'])
+        ->name('coupons.index')
+        ->middleware('can:view-any-coupon');
 
+    // STORE
+    Route::post('/coupon', [CouponController::class, 'store'])
+        ->name('coupons.store')
+        ->middleware('can:create-coupon');
+
+    // SHOW
+    Route::get('/coupon/{coupon:code}', [CouponController::class, 'show'])
+        ->name('coupons.show');
+
+    // UPDATE
+    Route::put('/coupon/{coupon:code}', [CouponController::class, 'update'])
+        ->name('coupons.update')
+        ->middleware('can:update-coupon');
+
+    // ACTIVATE
+    Route::put('/coupon/{coupon:code}/activate', [CouponController::class, 'activate'])
+        ->name('coupons.activate')
+        ->middleware('can:activate-coupon'); // Assuming activation is part of the update policy
 });
+
 
 
 Route::get('/hello', function () {
