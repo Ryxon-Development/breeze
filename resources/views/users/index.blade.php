@@ -47,5 +47,13 @@
             @endforeach
             </tbody>
         </table>
+
+{{--        <div id="example"></div>--}}
+
+{{--        <div class="example"></div>--}}
+{{--        <div class="example"></div>--}}
+
+        <div id="another" data-count="2" data-title="Some title..." data-users="{{ $users }}"></div>
+
     </div>
 </x-app-layout>
