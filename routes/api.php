@@ -40,6 +40,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+//get all users no auth/middleware
+Route::get('/users', function() {
+    return response()->json(User::all(),200);
+});
+
+
 //---COUPONS---
 Route::middleware('auth:sanctum')->group(function () {
 

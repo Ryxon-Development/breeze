@@ -38,7 +38,8 @@ class CouponController extends Controller
      */
     public function create()
     {
-
+        //show coupon create form
+        return view('coupons.create');
     }
 
     /**
@@ -46,10 +47,13 @@ class CouponController extends Controller
      */
     public function store(StoreCouponRequest $request)
     {
+        //create coupon
+        $coupon = Coupon::create($request->all());
+
         return response()->json([
             'message' => 'Coupon created successfully',
-            'coupon' => Coupon::create($request->all())
-        ], 200);
+            'coupon' => $coupon,
+        ], 201);
     }
 
     /**
