@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,5 +60,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::put('/generate-token/{user}', [UserController::class, 'generateApiToken'])->name('generate-token');
 });
+
+Route::post('/test', [TestController::class, 'submit'])->name('test.submit');
 
 require __DIR__.'/auth.php';
