@@ -15,6 +15,17 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function revokeApiToken(User $user)
+    {
+        //remove token from personal_access_tokens table
+        $user->tokens()->delete();
+        $user->api_token = null;
+        $user->save();
+        return response()->json([
+            'message' => 'Token revoked!',
+        ], 200);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -71,6 +82,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+
+
         //update the user
         $user = User::find($id);
         $user->name = $request->name;

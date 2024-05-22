@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::put('/generate-token/{user}', [UserController::class, 'generateApiToken'])->name('generate-token');
+    Route::delete('/revoke-token/{user}', [UserController::class, 'revokeApiToken'])->name('revoke-token');
 });
 
 Route::post('/test', [TestController::class, 'submit'])->name('test.submit');
