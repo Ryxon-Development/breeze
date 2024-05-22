@@ -75,7 +75,17 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+
+        //if password is not empty and password_confirmation is the same as password, then update the password
+        if (!empty($request->password)) {
+            if($request->password == $request->password_confirmation) {
+                $user->password = $request->password;
+            }else{
+                //redirect to current page with error message
+                return redirect()->back()->with('error', 'Passwords do not match!');
+            }
+        }
+
         $user->save();
 
         return redirect()->route('users.index')->with('message', 'User updated successfully!');
