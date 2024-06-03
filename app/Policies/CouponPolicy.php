@@ -75,6 +75,8 @@ class CouponPolicy
      */
     public function activate(User $user, Coupon $coupon): bool
     {
-        return $user->id === 1;
+        return $user->id === 1
+            ? Response::allow()
+            : Response::deny(__('You are not authorized to activate this coupon.'));
     }
 }
