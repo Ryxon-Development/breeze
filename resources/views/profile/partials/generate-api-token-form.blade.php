@@ -14,7 +14,7 @@
         @method('put')
         <div class="flex items-center space-x-4">
             <input id="api-token-input" type="text" name="api_token" value="{{ $user->api_token }}" class="w-full pr-8">
-            <button type="button" id="copy-token-button" class="p-2 bg-blue-500 text-white rounded">Copy</button>
+            <button type="button" id="copy-token-button" class="p-2 bg-blue-500 text-white rounded">{{__('Copy')}}</button>
         </div>
         <x-primary-button>{{ __('Generate') }}</x-primary-button>
 {{--        button to invoke the 'revoke-token' route.--}}
@@ -46,7 +46,7 @@ $(document).ready(function() {
                 $('#api-token-input').val(response.token);
 
                 // Display a success message (you can customize this part)
-                alert('New token generated successfully');
+                alert('{{ __('Token generated successfully!') }}');
             },
             error: function(xhr, status, error) {
                 // Handle errors here
@@ -68,7 +68,7 @@ $(document).ready(function() {
             success: function(response) {
                 // Clear the input field and display a success message
                 $('#api-token-input').val('');
-                alert('Token revoked successfully');
+                alert('{{ __('Token revoked successfully!') }}');
             },
             error: function(xhr, status, error) {
                 // Handle errors here
@@ -82,6 +82,6 @@ document.getElementById('copy-token-button').addEventListener('click', function(
     var apiTokenInput = document.getElementById('api-token-input');
     apiTokenInput.select();
     document.execCommand('copy');
-    alert('Token copied to clipboard');
+    alert('{{__('Token copied to clipboard!')}}');
 });
 </script>

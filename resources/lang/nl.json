@@ -44,5 +44,13 @@
     "You cannot delete a user with assigned tasks!": "Je kunt een gebruiker met toegewezen taken niet verwijderen!",
     "User deleted successfully!": "Gebruiker succesvol verwijderd!",
     "Personal API Token" : "Persoonlijke API Token",
-    "Generate your personal API token." : "Genereer je persoonlijke API token."
+    "Generate your personal API token." : "Genereer je persoonlijke API token.",
+    "API Token" : "API Sleutel",
+    "Generate" : "Genereer",
+    "Copy" : "Kopieer",
+    "Copied!" : "Gekopieerd!",
+    "Revoke" : "Intrekken",
+    "Token generated successfully!" : "Token succesvol gegenereerd!"
+    ,"Token copied to clipboard!" : "Token gekopieerd naar klembord!"
+    ,"Token revoked successfully!" : "Token succesvol ingetrokken!"
 }
